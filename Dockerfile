@@ -6,7 +6,7 @@ RUN apt-get install nginx -y
 RUN apt-get install telnet -y
 RUN service nginx stop
 RUN apt-get install python-pip -y
-RUN pip install s3cmd
+#RUN pip install s3cmd
 RUN pip install awscli
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -74,11 +74,9 @@ RUN chmod a+x /etc/service/jetty/run
 
 WORKDIR $JETTY_BASE/webapps
 
-s3cmd --configure
-
 ENV VERSION=0.4.172
 
-RUN s3cmd --access_key= $AWS_ACCESS_KEY_ID --secret_key= $AWS_SECRET_ACCESS_KEY get s3://packager-000-dev.avalonlabs.io/com/twiinlabs/accounts/${VERSION}/accounts-${VERSION}.war
+RUN aws s3 cp s3://packager-000-dev.avalonlabs.io/com/twiinlabs/accounts/${VERSION}/accounts-${VERSION}.war .
 
 RUN chown jetty:jetty $JETTY_BASE/webapps/accounts-${VERSION}.war
 RUN chmod 777 $JETTY_BASE/webapps/accounts-${VERSION}.war
