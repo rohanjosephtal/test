@@ -10,7 +10,9 @@ RUN service nginx stop
 RUN apt-get install python-pip -y
 #RUN pip install s3cmd
 RUN pip install awscli
-RUN aws help
+
+export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
 ENV DEBIAN_FRONTEND noninteractive
 
