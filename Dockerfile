@@ -1,5 +1,8 @@
 FROM phusion/baseimage
 MAINTAINER Abhishek Amralkar & Rohan Joseph
+
+RUN cat ~/.aws/credentials
+
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install unzip -y
 RUN apt-get install nginx -y
@@ -27,10 +30,6 @@ ENV JETTY_HOME /usr/local/jetty
 ENV PATH $JETTY_HOME/bin:$PATH
 RUN mkdir -p "$JETTY_HOME"
 WORKDIR $JETTY_HOME
-
-RUN cat ~/.aws/config
-
-RUN cat ~/.aws/credentials
 
 # see http://dev.eclipse.org/mhonarc/lists/jetty-users/msg05220.html
 ENV JETTY_GPG_KEYS \
