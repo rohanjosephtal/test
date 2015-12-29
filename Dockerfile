@@ -70,14 +70,14 @@ RUN set -xe \
 RUN mkdir /etc/service/jetty
 ADD start_jetty.sh /etc/service/jetty/run
 RUN chmod a+x /etc/service/jetty/run
-ADD ~/.aws/config /root/
-ADD ~/.aws/credentials /root/
+
 WORKDIR $JETTY_BASE/webapps
 
+ADD .s3cfg /root/
 
 ENV VERSION=0.4.172
 
-RUN s3cmd get s3://packager-000-dev.avalonlabs.io/com/twiinlabs/accounts/${VERSION}/accounts-${VERSION}.war
+RUN s3cmd --access_key=$AWS_ACCESS_KEY_ID --secret_key=$AWS_SECRET_ACCESS_KEY get s3://packager-000-dev.avalonlabs.io/com/twiinlabs/accounts/${VERSION}/accounts-${VERSION}.war
 
 RUN chown jetty:jetty $JETTY_BASE/webapps/accounts-${VERSION}.war
 RUN chmod 777 $JETTY_BASE/webapps/accounts-${VERSION}.war
