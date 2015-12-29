@@ -1,7 +1,7 @@
 FROM phusion/baseimage
 MAINTAINER Abhishek Amralkar & Rohan Joseph
 
-RUN cat ~/.bashrc
+RUN cat ~/.bash_profile
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install unzip -y
