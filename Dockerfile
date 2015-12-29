@@ -76,7 +76,7 @@ WORKDIR $JETTY_BASE/webapps
 
 ENV VERSION=0.4.172
 
-RUN sudo s3cmd get s3://packager-000-dev.avalonlabs.io/com/twiinlabs/accounts/${VERSION}/accounts-${VERSION}.war 
+RUN sudo s3cmd get s3://$BUCKET/com/twiinlabs/accounts/${VERSION}/accounts-${VERSION}.war 
 
 RUN chown jetty:jetty $JETTY_BASE/webapps/accounts-${VERSION}.war
 RUN chmod 777 $JETTY_BASE/webapps/accounts-${VERSION}.war
