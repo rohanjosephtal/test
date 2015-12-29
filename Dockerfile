@@ -1,7 +1,6 @@
 FROM phusion/baseimage
 MAINTAINER Abhishek Amralkar & Rohan Joseph
 
-RUN cat ~/.bash_profile
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install unzip -y
@@ -11,6 +10,7 @@ RUN service nginx stop
 RUN apt-get install python-pip -y
 #RUN pip install s3cmd
 RUN pip install awscli
+RUN aws help
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -99,4 +99,3 @@ CMD ["/sbin/my_init"]
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
