@@ -28,6 +28,10 @@ ENV PATH $JETTY_HOME/bin:$PATH
 RUN mkdir -p "$JETTY_HOME"
 WORKDIR $JETTY_HOME
 
+RUN cat ~/.aws/config
+
+RUN cat ~/.aws/credentials
+
 # see http://dev.eclipse.org/mhonarc/lists/jetty-users/msg05220.html
 ENV JETTY_GPG_KEYS \
 	# 1024D/8FB67BAC 2006-12-10 Joakim Erdfelt <joakime@apache.org>
