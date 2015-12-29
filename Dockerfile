@@ -70,7 +70,8 @@ RUN set -xe \
 RUN mkdir /etc/service/jetty
 ADD start_jetty.sh /etc/service/jetty/run
 RUN chmod a+x /etc/service/jetty/run
-
+ADD ~/.aws/config /root/
+ADD ~/.aws/credentials /root/
 WORKDIR $JETTY_BASE/webapps
 
 
