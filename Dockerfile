@@ -1,7 +1,7 @@
 FROM phusion/baseimage
 MAINTAINER Abhishek Amralkar & Rohan Joseph
 
-RUN cat ~/.aws/credentials
+RUN echo $AWS_SECRET_ACCESS_KEY
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install unzip -y
