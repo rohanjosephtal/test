@@ -7,8 +7,8 @@ machine:
 dependencies:
   override:
     - docker info
-    - cat /etc/default/docker
     - sudo chmod 777 /etc/default/docker
     - sudo echo DOCKER_OPTS="--insecure-registry="$DockerRepo >> /etc/default/docker
+    - cat /etc/default/docker
     - docker build -t $dockerimage/twiin-app-dev-accounts-v-000 .
     - docker push $dockerimage/twiin-app-dev-accounts-v-000
