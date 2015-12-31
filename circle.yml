@@ -8,8 +8,7 @@ dependencies:
   override:
     - docker info
     - sudo chmod 777 /etc/default/docker
-    - sudo sed 's/DOCKER_OPTS=/#DOCKER_OPTS=/'  /etc/default/docker
-    - sudo echo DOCKER_OPTS="--insecure-registry="$DockerRepo >> /etc/default/docker
+    - sudo sed 's/DOCKER_OPTS="-s btrfs -e lxc -D --userland-proxy=false"/DOCKER_OPTS="--insecure-registry="$DockerRepo/'  /etc/default/docker
     - cat /etc/default/docker
     - docker build -t $dockerimage/twiin-app-dev-accounts-v-000 .
     - docker push $dockerimage/twiin-app-dev-accounts-v-000
